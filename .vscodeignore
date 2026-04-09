@@ -1,9 +1,17 @@
 .vscode/**
 .vscode-test/**
+apps/**
+docs/**
+examples/**
 src/**
+dist/**
+!dist/extension.js
+!dist/preview.js
+!dist/editorWebview.js
 esbuild.config.mjs
 tsconfig.json
 .gitignore
 pnpm-lock.yaml
 **/*.map
 node_modules/**
+
