@@ -1,0 +1,13 @@
+# Infographic 预览示例
+
+```infographic
+infographic list-row-simple-horizontal-arrow
+data
+  lists
+    - label Step 1
+      desc Start
+    - label Step 2
+      desc In Progress
+    - label Step 3
+      desc Complete
+```

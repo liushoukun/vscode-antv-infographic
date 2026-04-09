@@ -1,0 +1,20 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "scopeName": "markdown.infographic.codeblock",
+  "injectionSelector": "L:text.html.markdown",
+  "patterns": [
+    {
+      "begin": "(^|\\G)(\\s*)([`~]{3,})\\s*(?i:infographic)\\s*$",
+      "beginCaptures": {
+        "2": { "name": "punctuation.whitespace.markdown.leading" },
+        "3": { "name": "punctuation.definition.markdown" }
+      },
+      "end": "(^|\\G)(\\s*)([`~]{3,})\\s*$",
+      "endCaptures": {
+        "3": { "name": "punctuation.definition.markdown" }
+      },
+      "contentName": "meta.embedded.block.infographic.markdown",
+      "patterns": [{ "include": "source.infographic" }]
+    }
+  ]
+}

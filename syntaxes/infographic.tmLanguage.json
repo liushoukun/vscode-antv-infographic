@@ -1,0 +1,69 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "AntV Infographic",
+  "scopeName": "source.infographic",
+  "patterns": [
+    { "include": "#comments" },
+    { "include": "#keywords" },
+    { "include": "#list" },
+    { "include": "#strings" }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.number-sign.infographic",
+          "match": "#.*$"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.infographic",
+          "match": "(?x) ^\\s* (?: infographic|data|theme|template|design)\\b"
+        },
+        {
+          "name": "entity.name.type.infographic",
+          "match": "(?x) ^\\s* infographic \\s+ [-\\w]+"
+        },
+        {
+          "name": "support.type.property-name.yaml",
+          "match": "(?x) ^\\s* (?: label|desc|title|value|name|type)\\b"
+        }
+      ]
+    },
+    "list": {
+      "patterns": [
+        {
+          "name": "punctuation.definition.list.begin.infographic",
+          "match": "^\\s*-\\s+"
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.infographic",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [{ "include": "#string-escape" }]
+        },
+        {
+          "name": "string.quoted.single.infographic",
+          "begin": "'",
+          "end": "'",
+          "patterns": [{ "include": "#string-escape" }]
+        }
+      ]
+    },
+    "string-escape": {
+      "patterns": [
+        {
+          "name": "constant.character.escape.infographic",
+          "match": "\\\\."
+        }
+      ]
+    }
+  }
+}

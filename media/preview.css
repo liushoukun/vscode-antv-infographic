@@ -1,0 +1,5 @@
+/* 仅 Markdown 中 infographic 块外层容器，不设置画布/图表渲染样式 */
+.vscode-infographic-host {
+  margin: 1em 0;
+  overflow: auto;
+}

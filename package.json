@@ -1,0 +1,121 @@
+{
+  "name": "vscode-antv-infographic",
+  "displayName": "AntV Infographic for Markdown",
+  "description": "在 Markdown 中为 AntV Infographic 提供语法高亮与预览渲染。",
+  "version": "0.1.0",
+  "publisher": "liushoukun",
+  "icon": "media/images/logo.png",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/liushoukun/vscode-antv-infographic.git"
+  },
+  "license": "MIT",
+  "packageManager": "pnpm@9.15.0",
+  "engines": {
+    "vscode": "^1.85.0",
+    "node": ">=18"
+  },
+  "categories": [
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "markdown",
+    "antv",
+    "infographic",
+    "preview"
+  ],
+  "activationEvents": [
+    "onLanguage:markdown"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "antvInfographic.editBlock",
+        "title": "编辑 Infographic 代码块",
+        "icon": {
+          "light": "media/images/logo.png",
+          "dark": "media/images/logo.png"
+        }
+      }
+    ],
+    "configuration": {
+      "title": "AntV Infographic",
+      "properties": {
+        "antvInfographic.editorWidth": {
+          "type": [
+            "string",
+            "number"
+          ],
+          "default": "100%",
+          "description": "侧栏可视化编辑区画布宽度（传给 @antv/infographic）。"
+        },
+        "antvInfographic.editorHeight": {
+          "type": "number",
+          "default": 480,
+          "description": "侧栏可视化编辑区画布高度（像素）。"
+        }
+      }
+    },
+    "languages": [
+      {
+        "id": "infographic",
+        "aliases": [
+          "AntV Infographic",
+          "infographic"
+        ],
+        "extensions": [
+          ".infographic"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "markdown.markdownItPlugins": true,
+    "markdown.previewScripts": [
+      "./dist/preview.js"
+    ],
+    "markdown.previewStyles": [
+      "./media/preview.css"
+    ],
+    "grammars": [
+      {
+        "language": "infographic",
+        "scopeName": "source.infographic",
+        "path": "./syntaxes/infographic.tmLanguage.json",
+        "embeddedLanguages": {
+          "meta.embedded.block.infographic": "infographic"
+        }
+      },
+      {
+        "scopeName": "markdown.infographic.codeblock",
+        "path": "./syntaxes/infographic.markdown-injection.json",
+        "injectTo": [
+          "text.html.markdown"
+        ],
+        "embeddedLanguages": {
+          "meta.embedded.block.infographic": "infographic"
+        }
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "pnpm run build",
+    "build": "node esbuild.config.mjs",
+    "watch": "node esbuild.config.mjs --watch",
+    "compile": "pnpm run build",
+    "vsix": "vsce package --no-dependencies"
+  },
+  "dependencies": {
+    "@antv/infographic": "^0.2.16",
+    "@panzoom/panzoom": "^4.6.2"
+  },
+  "devDependencies": {
+    "@types/markdown-it": "^14.1.2",
+    "@types/node": "^22.10.2",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.7.1",
+    "esbuild": "^0.24.2",
+    "typescript": "^5.7.2"
+  }
+}
