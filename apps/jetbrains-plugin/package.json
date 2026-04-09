@@ -1,0 +1,17 @@
+{
+  "name": "jetbrains-antv-infographic",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "build:web": "node ./web-src/esbuild.config.mjs",
+    "watch:web": "node ./web-src/esbuild.config.mjs --watch"
+  },
+  "dependencies": {
+    "@antv/infographic": "^0.2.16"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.11",
+    "typescript": "^5.9.3"
+  }
+}

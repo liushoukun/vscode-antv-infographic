@@ -1,0 +1,15 @@
+<idea-plugin>
+  <id>com.liushoukun.jetbrains.antv-infographic</id>
+  <name>AntV Infographic Markdown Preview</name>
+  <vendor email="liushoukun@example.com">liushoukun</vendor>
+  <description><![CDATA[
+    Render infographic fenced blocks in JetBrains Markdown preview.
+  ]]></description>
+
+  <depends>org.intellij.plugins.markdown</depends>
+
+  <extensions defaultExtensionNs="org.intellij.markdown">
+    <browserPreviewExtensionProvider
+      implementation="com.liushoukun.infographic.preview.InfographicBrowserPreviewExtensionProvider"/>
+  </extensions>
+</idea-plugin>
