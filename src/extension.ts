@@ -129,6 +129,27 @@ function findInfographicBlockAtCursor(
   return undefined;
 }
 
+/** 工作区内真实 `.infographic` 文件（非 Markdown 同步用的 untitled 缓冲）。 */
+function isWorkspaceInfographicFile(document: vscode.TextDocument): boolean {
+  if (document.languageId !== 'infographic') {
+    return false;
+  }
+  if (document.uri.scheme !== 'file') {
+    return false;
+  }
+  return document.fileName.toLowerCase().endsWith('.infographic');
+}
+
+function openInfographicEditorForStandaloneFile(
+  document: vscode.TextDocument,
+  context: vscode.ExtensionContext
+): void {
+  if (!isWorkspaceInfographicFile(document)) {
+    return;
+  }
+  InfographicEditorPanel.createOrShow(document, context);
+}
+
 export function activate(context: vscode.ExtensionContext) {
   const codeLensProvider = new InfographicCodeLensProvider();
   context.subscriptions.push(
@@ -146,6 +167,19 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(gutter);
 
   context.subscriptions.push(new SaveHandler(context).register());
+
+  context.subscriptions.push(
+    vscode.window.onDidChangeActiveTextEditor((editor) => {
+      if (editor) {
+        openInfographicEditorForStandaloneFile(editor.document, context);
+      }
+    })
+  );
+
+  const initialEditor = vscode.window.activeTextEditor;
+  if (initialEditor) {
+    openInfographicEditorForStandaloneFile(initialEditor.document, context);
+  }
 
   context.subscriptions.push(
     vscode.commands.registerCommand(

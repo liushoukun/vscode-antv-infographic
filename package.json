@@ -2,7 +2,7 @@
   "name": "vscode-antv-infographic",
   "displayName": "AntV Infographic Markdown Preview",
   "description": "在 Markdown 中为 AntV Infographic 提供语法高亮与预览渲染。",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "publisher": "liushoukun",
   "icon": "media/images/logo.png",
   "repository": {
@@ -26,7 +26,8 @@
     "preview"
   ],
   "activationEvents": [
-    "onLanguage:markdown"
+    "onLanguage:markdown",
+    "onLanguage:infographic"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -68,6 +69,10 @@
         "extensions": [
           ".infographic"
         ],
+        "icon": {
+          "light": "./media/images/logo.svg",
+          "dark": "./media/images/logo.svg"
+        },
         "configuration": "./language-configuration.json"
       }
     ],
