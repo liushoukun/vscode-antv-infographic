@@ -8,7 +8,9 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const watch = process.argv.includes('--watch');
 
 const previewBundle = join(__dirname, '../../packages/preview-web/dist/preview.js');
+const previewCssSource = join(__dirname, '../../packages/preview-web/preview.css');
 const previewOut = join(__dirname, 'dist/preview.js');
+const previewCssOut = join(__dirname, 'media/preview.css');
 
 function copyPreviewJs() {
   if (!existsSync(previewBundle)) {
@@ -20,18 +22,37 @@ function copyPreviewJs() {
   copyFileSync(previewBundle, previewOut);
 }
 
-function watchPreviewBundle() {
+function copyPreviewCss() {
+  if (!existsSync(previewCssSource)) {
+    throw new Error('缺少 packages/preview-web/preview.css');
+  }
+  mkdirSync(dirname(previewCssOut), { recursive: true });
+  copyFileSync(previewCssSource, previewCssOut);
+}
+
+function copyPreviewWebArtifacts() {
+  copyPreviewJs();
+  copyPreviewCss();
+}
+
+function watchPreviewWebArtifacts() {
+  const sync = () => {
+    try {
+      copyPreviewWebArtifacts();
+      console.info('[vscode] 已同步 preview-web 的 preview.js / preview.css');
+    } catch (err) {
+      console.error('[vscode] 同步 preview-web 资源失败', err);
+    }
+  };
   try {
-    fsWatchFile(previewBundle, () => {
-      try {
-        copyPreviewJs();
-        console.info('[vscode] 已同步 packages/preview-web/dist/preview.js');
-      } catch (err) {
-        console.error('[vscode] 同步 preview.js 失败', err);
-      }
-    });
+    fsWatchFile(previewBundle, sync);
   } catch {
-    /* 首次构建前文件可能尚不存在，忽略 */
+    /* 首次构建前可能尚不存在 */
+  }
+  try {
+    fsWatchFile(previewCssSource, sync);
+  } catch {
+    /* ignore */
   }
 }
 
@@ -60,12 +81,12 @@ const editorWebviewCtx = await esbuild.context({
 });
 
 if (watch) {
-  copyPreviewJs();
-  watchPreviewBundle();
+  copyPreviewWebArtifacts();
+  watchPreviewWebArtifacts();
   await Promise.all([extensionCtx.watch(), editorWebviewCtx.watch()]);
-  console.log('watching extension + editor webview；并行运行 pnpm --filter @antv-infographic/preview-web run watch 以热更新 preview');
+  console.log('watching extension + editor webview；并行运行 pnpm --filter @antv-infographic/preview-web run watch 以热更新 preview.js');
 } else {
   await Promise.all([extensionCtx.rebuild(), editorWebviewCtx.rebuild()]);
-  copyPreviewJs();
+  copyPreviewWebArtifacts();
   await Promise.all([extensionCtx.dispose(), editorWebviewCtx.dispose()]);
 }

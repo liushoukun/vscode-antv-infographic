@@ -1,5 +1,6 @@
 # 由 Gradle syncPreviewJs 从 monorepo packages/preview-web 生成
 src/main/resources/web/preview.js
+src/main/resources/web/preview.css
 
 # Node / 前端依赖
 node_modules/

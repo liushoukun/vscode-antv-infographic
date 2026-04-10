@@ -3,6 +3,8 @@ dist/
 apps/vscode/dist/
 packages/preview-web/dist/
 apps/jetbrains/src/main/resources/web/preview.js
+apps/jetbrains/src/main/resources/web/preview.css
+apps/vscode/media/preview.css
 *.vsix
 .DS_Store
 package-lock.json

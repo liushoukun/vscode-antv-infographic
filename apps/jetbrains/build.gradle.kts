@@ -21,6 +21,7 @@ intellij {
 }
 
 val previewWebDist = monorepoRoot.resolve("packages/preview-web/dist/preview.js")
+val previewWebCss = monorepoRoot.resolve("packages/preview-web/preview.css")
 
 val buildPreviewWeb =
     tasks.register<Exec>("buildPreviewWeb") {
@@ -38,9 +39,10 @@ val buildPreviewWeb =
 val syncPreviewJs =
     tasks.register<Copy>("syncPreviewJs") {
         group = "build"
-        description = "将 preview-web 产物复制到 src/main/resources/web/"
+        description = "将 preview-web 的 preview.js / preview.css 复制到 src/main/resources/web/"
         dependsOn(buildPreviewWeb)
         from(previewWebDist)
+        from(previewWebCss)
         into(layout.projectDirectory.dir("src/main/resources/web"))
         duplicatesStrategy = DuplicatesStrategy.INCLUDE
     }

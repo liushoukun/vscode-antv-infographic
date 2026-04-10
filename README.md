@@ -2,7 +2,7 @@
 
 本仓库 **antv-infographic-markdown-preview-plugins** 为 monorepo，包含：
 
-- **`packages/preview-web`**：Markdown 预览页注入的共享 `preview.js`（`@antv/infographic` 浏览器端打包）。
+- **`packages/preview-web`**：Markdown 预览共享资源：`preview.ts` 打包为 `preview.js`，样式见同目录 `preview.css`（构建时复制到 VS Code `media/` 与 JetBrains `resources/web/`）。
 - **`apps/vscode`**：VS Code / Cursor 扩展（`vscode-antv-infographic`）。
 - **`apps/jetbrains`**：JetBrains IDE 插件（Gradle + Kotlin）。
 
