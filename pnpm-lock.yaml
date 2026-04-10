@@ -8,7 +8,7 @@ importers:
 
   .: {}
 
-  apps/vscode-extension:
+  apps/vscode:
     dependencies:
       '@antv/infographic':
         specifier: ^0.2.16

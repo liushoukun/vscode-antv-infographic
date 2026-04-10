@@ -1,8 +1,8 @@
 node_modules/
 dist/
-apps/vscode-extension/dist/
+apps/vscode/dist/
 packages/preview-web/dist/
-apps/jetbrains-plugin/src/main/resources/web/preview.js
+apps/jetbrains/src/main/resources/web/preview.js
 *.vsix
 .DS_Store
 package-lock.json

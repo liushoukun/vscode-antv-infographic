@@ -25,9 +25,9 @@ function watchPreviewBundle() {
     fsWatchFile(previewBundle, () => {
       try {
         copyPreviewJs();
-        console.info('[vscode-extension] 已同步 packages/preview-web/dist/preview.js');
+        console.info('[vscode] 已同步 packages/preview-web/dist/preview.js');
       } catch (err) {
-        console.error('[vscode-extension] 同步 preview.js 失败', err);
+        console.error('[vscode] 同步 preview.js 失败', err);
       }
     });
   } catch {

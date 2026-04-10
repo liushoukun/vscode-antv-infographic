@@ -91,7 +91,7 @@ flowchart LR
 ```text
 <monorepo>/packages/preview-web/
   src/preview.ts                # 与 VS Code 共用的 Markdown 预览脚本（Gradle 构建时打入本插件 resources）
-apps/jetbrains-plugin/
+apps/jetbrains/
   src/main/kotlin/
     ...                         # 插件入口与 Markdown 接入实现
   src/main/resources/

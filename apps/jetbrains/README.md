@@ -2,11 +2,11 @@
 
 在 JetBrains IDE 的 **Markdown 预览** 中渲染 `infographic` 围栏代码块（依赖官方 Markdown 插件）。
 
-插件在 JetBrains Marketplace / 插件页中的**名称、说明、图标**与仓库内 **VS Code 扩展**（`apps/vscode-extension/package.json` 的 `displayName`、`description`、`apps/vscode-extension/media/images/logo.svg`）及仓库根目录 `README.md` / `DESIGN.md` 保持一致口径；图标文件复制为 `src/main/resources/META-INF/pluginIcon.svg`、`pluginLogo.svg`、`pluginIcon_dark.svg`（与上游 SVG 同步更新时请一并替换）。
+插件在 JetBrains Marketplace / 插件页中的**名称、说明、图标**与仓库内 **VS Code 扩展**（`apps/vscode/package.json` 的 `displayName`、`description`、`apps/vscode/media/images/logo.svg`）及仓库根目录 `README.md` / `DESIGN.md` 保持一致口径；图标文件复制为 `src/main/resources/META-INF/pluginIcon.svg`、`pluginLogo.svg`、`pluginIcon_dark.svg`（与上游 SVG 同步更新时请一并替换）。
 
 **语言与文件**
 
-- **语法高亮**：Markdown 中 ` ```infographic ` 围栏内注入 `AntVInfographic` 语言；独立 `*.infographic` 文件亦使用该语言（词法规则对齐 `apps/vscode-extension/syntaxes/infographic.tmLanguage.json`）。
+- **语法高亮**：Markdown 中 ` ```infographic ` 围栏内注入 `AntVInfographic` 语言；独立 `*.infographic` 文件亦使用该语言（词法规则对齐 `apps/vscode/syntaxes/infographic.tmLanguage.json`）。
 - **独立文件预览**：打开 `*.infographic` 时为「文本 + Preview」分栏（`TextEditorWithPreview`），预览页加载与 Markdown 相同的 `preview.js` / `preview.css`（需 JCEF）。示例：`examples/sample.infographic`。
 
 ## 环境要求
@@ -42,7 +42,7 @@ flowchart LR
 
 ## 2. 打包插件（生成 ZIP）
 
-在 **`apps/jetbrains-plugin`** 目录下执行 Gradle 任务 **`buildPlugin`**。
+在 **`apps/jetbrains`** 目录下执行 Gradle 任务 **`buildPlugin`**。
 
 **推荐：始终使用 Wrapper**（锁定 Gradle **8.10.2**，避免与 IntelliJ 插件冲突）：
 
@@ -90,7 +90,7 @@ flowchart LR
 
 ### 4.1 用沙箱 IDE 断点调试（Kotlin）
 
-1. 用 **IntelliJ IDEA** 打开本目录 `apps/jetbrains-plugin`。
+1. 用 **IntelliJ IDEA** 打开本目录 `apps/jetbrains`。
 2. 终端在仓库根执行 `pnpm --filter @antv-infographic/preview-web run watch`（可选）；改 `packages/preview-web` 后需让 Gradle 重新 `processResources` 或 `buildPlugin` 以更新插件内 `preview.js`。
 3. Gradle 面板运行 **`runIde`**，会启动带当前插件的干净 IDE。
 4. 在 Kotlin 源码里下断点（例如 `InfographicBrowserPreviewExtensionProvider`），沙箱 IDE 里打开 Markdown 预览即可命中。
@@ -134,7 +134,7 @@ JetBrains 文档说明：若 `plugin.xml` **只**声明对**其它插件**的依
 | `build.gradle.kts` | 插件版本、Kotlin、IntelliJ Gradle 插件配置 |
 | `gradle.properties` | 平台类型与版本 |
 | `src/main/resources/META-INF/plugin.xml` | 插件 ID、说明、依赖 Markdown、扩展点注册 |
-| `src/main/resources/META-INF/pluginIcon*.svg`、`pluginLogo.svg` | 插件列表/详情图标（与 `apps/vscode-extension/media/images/logo.svg` 同源） |
+| `src/main/resources/META-INF/pluginIcon*.svg`、`pluginLogo.svg` | 插件列表/详情图标（与 `apps/vscode/media/images/logo.svg` 同源） |
 | `../../packages/preview-web` | 共享 Markdown 预览脚本源码与 esbuild 配置 |
 | `gradle/wrapper/`、`gradlew*` | Gradle Wrapper，固定使用 8.10.2 |
 
