@@ -1,6 +1,6 @@
-# AntV Infographic Markdown Preview（多 IDE）
+# AntV Infographic Markdown Preview Plugins
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
 [![AntV Infographic](https://img.shields.io/badge/AntV-Infographic-1677FF.svg)](https://github.com/antvis/infographic)
 [![VS Code Marketplace](https://img.shields.io/visual-studio-marketplace/v/liushoukun.vscode-antv-infographic?label=VS%20Code&logo=visualstudiocode&logoColor=white)](https://marketplace.visualstudio.com/items?itemName=liushoukun.vscode-antv-infographic)
 [![Open VSX](https://img.shields.io/open-vsx/v/liushoukun/vscode-antv-infographic?label=Open%20VSX&logo=eclipse-theia&logoColor=white)](https://open-vsx.org/extension/liushoukun/vscode-antv-infographic)
