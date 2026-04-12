@@ -24,7 +24,7 @@
 
 ## Demo
 
-![Demo](./apps/vscode/media/demo/demo-1.png)
+![Demo](./examples/j-1.png)
 
 ## 用法
 
